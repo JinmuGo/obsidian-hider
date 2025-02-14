@@ -55,6 +55,7 @@ export default class Hider extends Plugin {
     document.body.classList.toggle('hider-status', this.settings.hideStatus);
     document.body.classList.toggle('hider-tabs', this.settings.hideTabs);
     document.body.classList.toggle('hider-scroll', this.settings.hideScroll);
+    document.body.classList.toggle('hider-sidebar-ribbons', this.settings.hideSidebarRibbons);
     document.body.classList.toggle('hider-sidebar-buttons', this.settings.hideSidebarButtons);
     document.body.classList.toggle('hider-tooltips', this.settings.hideTooltips);
     document.body.classList.toggle('hider-search-suggestions', this.settings.hideSearchSuggestions);
@@ -71,6 +72,7 @@ interface HiderSettings {
   hideStatus: boolean;
   hideTabs: boolean;
   hideScroll: boolean;
+  hideSidebarRibbons: boolean;
   hideSidebarButtons: boolean;
   hideTooltips: boolean;
   hideFileNavButtons: boolean;
@@ -84,6 +86,7 @@ const DEFAULT_SETTINGS: HiderSettings = {
   hideStatus: false,
   hideTabs: false,
   hideScroll: false,
+  hideSidebarRibbons: false,
   hideSidebarButtons: false,
   hideTooltips: false,
   hideFileNavButtons: false,
@@ -147,6 +150,17 @@ class HiderSettingTab extends PluginSettingTab {
       .addToggle(toggle => toggle.setValue(this.plugin.settings.hideScroll)
           .onChange((value) => {
             this.plugin.settings.hideScroll = value;
+            this.plugin.saveData(this.plugin.settings);
+            this.plugin.refresh();
+            })
+          );
+
+    new Setting(containerEl)
+      .setName('Hide sidebar ribbons')
+      .setDesc('Hides the ribbons on the left sidebar.')
+      .addToggle(toggle => toggle.setValue(this.plugin.settings.hideSidebarRibbons)
+          .onChange((value) => {
+            this.plugin.settings.hideSidebarRibbons = value;
             this.plugin.saveData(this.plugin.settings);
             this.plugin.refresh();
             })

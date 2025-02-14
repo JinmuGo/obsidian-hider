@@ -13,6 +13,17 @@ body.hider-vault:not(.is-mobile) .workspace-split.mod-left-split .workspace-side
 	padding-left: var(--frame-left-space);
 }
 
+/* Hide sidebar ribbons */
+
+.hider-sidebar-ribbons .side-dock-ribbon.mod-right ,
+.hider-sidebar-ribbons .side-dock-ribbon.mod-left {
+  display: none;
+}
+
+.hider-sidebar-ribbons.is-hidden-frameless:not(.is-fullscreen) .workspace-tabs.mod-top-left-space .workspace-tab-header-container  {
+  padding-left: calc(var(--size-4-2) + var(--frame-left-space) + 35px);
+}
+
 /* Hide sidebar buttons */
 .hider-sidebar-buttons .sidebar-toggle-button.mod-right,
 .hider-sidebar-buttons .sidebar-toggle-button.mod-left {
